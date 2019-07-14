@@ -1,0 +1,1256 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<title>Blok IUP Prov. Sultra</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/AreaPenggunaanLain_1.js"></script>
+        <script src="data/HutanSuakaAlam_2.js"></script>
+        <script src="data/HutanProduksiYangDapatDikonversi_3.js"></script>
+        <script src="data/HutanProduksiTerbatas_4.js"></script>
+        <script src="data/HutanProduksiTetap_5.js"></script>
+        <script src="data/HutanLindung_6.js"></script>
+        <script src="data/Perkebunan_7.js"></script>
+        <script src="data/Permukiman_8.js"></script>
+        <script src="data/Kab_Wakatobi_9.js"></script>
+        <script src="data/Kab_Muna_Barat_10.js"></script>
+        <script src="data/Kab_Muna_11.js"></script>
+        <script src="data/Kota_Kendari_12.js"></script>
+        <script src="data/Kota_Bau_Bau_13.js"></script>
+        <script src="data/Kab_Konawe_Utara_14.js"></script>
+        <script src="data/Kab_Konawe_Selatan_15.js"></script>
+        <script src="data/Kab_Konawe_Kepulauan_16.js"></script>
+        <script src="data/Kab_Konawe_17.js"></script>
+        <script src="data/Kab_Kolaka_Utara_18.js"></script>
+        <script src="data/Kab_Kolaka_Timur_19.js"></script>
+        <script src="data/Kab_Kolaka_20.js"></script>
+        <script src="data/Kab_Buton_Utara_21.js"></script>
+        <script src="data/Kab_Buton_Tengah_22.js"></script>
+        <script src="data/Kab_Buton_Selatan_23.js"></script>
+        <script src="data/Kab_Buton_24.js"></script>
+        <script src="data/Kab_Bombana_25.js"></script>
+        <script src="data/Sungai_26.js"></script>
+        <script src="data/Sungai_27.js"></script>
+        <script src="data/BatasAdministrasi_28.js"></script>
+        <script src="data/JaringanJalan_29.js"></script>
+        <script src="data/BlokIUPSultra_30.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 1
+              });
+            }
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-6.298569277261272,119.46763618079073],[-2.6933636344957494,126.01374081985777]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        L.control.locate().addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var overlay_GoogleSatellite_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            opacity: 1.0
+        });
+        overlay_GoogleSatellite_0.addTo(map);
+        map.addLayer(overlay_GoogleSatellite_0);
+        function pop_AreaPenggunaanLain_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_AreaPenggunaanLain_1_0() {
+            return {
+                pane: 'pane_AreaPenggunaanLain_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(240,204,60,1.0)',
+            }
+        }
+        map.createPane('pane_AreaPenggunaanLain_1');
+        map.getPane('pane_AreaPenggunaanLain_1').style.zIndex = 401;
+        map.getPane('pane_AreaPenggunaanLain_1').style['mix-blend-mode'] = 'normal';
+        var layer_AreaPenggunaanLain_1 = new L.geoJson(json_AreaPenggunaanLain_1, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_AreaPenggunaanLain_1',
+            onEachFeature: pop_AreaPenggunaanLain_1,
+            style: style_AreaPenggunaanLain_1_0,
+        });
+        bounds_group.addLayer(layer_AreaPenggunaanLain_1);
+        map.addLayer(layer_AreaPenggunaanLain_1);
+        function pop_HutanSuakaAlam_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_HutanSuakaAlam_2_0() {
+            return {
+                pane: 'pane_HutanSuakaAlam_2',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(243,144,177,1.0)',
+            }
+        }
+        map.createPane('pane_HutanSuakaAlam_2');
+        map.getPane('pane_HutanSuakaAlam_2').style.zIndex = 402;
+        map.getPane('pane_HutanSuakaAlam_2').style['mix-blend-mode'] = 'normal';
+        var layer_HutanSuakaAlam_2 = new L.geoJson(json_HutanSuakaAlam_2, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_HutanSuakaAlam_2',
+            onEachFeature: pop_HutanSuakaAlam_2,
+            style: style_HutanSuakaAlam_2_0,
+        });
+        bounds_group.addLayer(layer_HutanSuakaAlam_2);
+        map.addLayer(layer_HutanSuakaAlam_2);
+        function pop_HutanProduksiYangDapatDikonversi_3(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_HutanProduksiYangDapatDikonversi_3_0() {
+            return {
+                pane: 'pane_HutanProduksiYangDapatDikonversi_3',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(97,154,18,1.0)',
+            }
+        }
+        map.createPane('pane_HutanProduksiYangDapatDikonversi_3');
+        map.getPane('pane_HutanProduksiYangDapatDikonversi_3').style.zIndex = 403;
+        map.getPane('pane_HutanProduksiYangDapatDikonversi_3').style['mix-blend-mode'] = 'normal';
+        var layer_HutanProduksiYangDapatDikonversi_3 = new L.geoJson(json_HutanProduksiYangDapatDikonversi_3, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_HutanProduksiYangDapatDikonversi_3',
+            onEachFeature: pop_HutanProduksiYangDapatDikonversi_3,
+            style: style_HutanProduksiYangDapatDikonversi_3_0,
+        });
+        bounds_group.addLayer(layer_HutanProduksiYangDapatDikonversi_3);
+        map.addLayer(layer_HutanProduksiYangDapatDikonversi_3);
+        function pop_HutanProduksiTerbatas_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_HutanProduksiTerbatas_4_0() {
+            return {
+                pane: 'pane_HutanProduksiTerbatas_4',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(134,238,15,1.0)',
+            }
+        }
+        map.createPane('pane_HutanProduksiTerbatas_4');
+        map.getPane('pane_HutanProduksiTerbatas_4').style.zIndex = 404;
+        map.getPane('pane_HutanProduksiTerbatas_4').style['mix-blend-mode'] = 'normal';
+        var layer_HutanProduksiTerbatas_4 = new L.geoJson(json_HutanProduksiTerbatas_4, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_HutanProduksiTerbatas_4',
+            onEachFeature: pop_HutanProduksiTerbatas_4,
+            style: style_HutanProduksiTerbatas_4_0,
+        });
+        bounds_group.addLayer(layer_HutanProduksiTerbatas_4);
+        map.addLayer(layer_HutanProduksiTerbatas_4);
+        function pop_HutanProduksiTetap_5(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_HutanProduksiTetap_5_0() {
+            return {
+                pane: 'pane_HutanProduksiTetap_5',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(42,180,56,1.0)',
+            }
+        }
+        map.createPane('pane_HutanProduksiTetap_5');
+        map.getPane('pane_HutanProduksiTetap_5').style.zIndex = 405;
+        map.getPane('pane_HutanProduksiTetap_5').style['mix-blend-mode'] = 'normal';
+        var layer_HutanProduksiTetap_5 = new L.geoJson(json_HutanProduksiTetap_5, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_HutanProduksiTetap_5',
+            onEachFeature: pop_HutanProduksiTetap_5,
+            style: style_HutanProduksiTetap_5_0,
+        });
+        bounds_group.addLayer(layer_HutanProduksiTetap_5);
+        map.addLayer(layer_HutanProduksiTetap_5);
+        function pop_HutanLindung_6(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_HutanLindung_6_0() {
+            return {
+                pane: 'pane_HutanLindung_6',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(3,48,1,1.0)',
+            }
+        }
+        map.createPane('pane_HutanLindung_6');
+        map.getPane('pane_HutanLindung_6').style.zIndex = 406;
+        map.getPane('pane_HutanLindung_6').style['mix-blend-mode'] = 'normal';
+        var layer_HutanLindung_6 = new L.geoJson(json_HutanLindung_6, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_HutanLindung_6',
+            onEachFeature: pop_HutanLindung_6,
+            style: style_HutanLindung_6_0,
+        });
+        bounds_group.addLayer(layer_HutanLindung_6);
+        map.addLayer(layer_HutanLindung_6);
+        function pop_Perkebunan_7(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Perkebunan_7_0() {
+            return {
+                pane: 'pane_Perkebunan_7',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(147,78,41,1.0)',
+            }
+        }
+        map.createPane('pane_Perkebunan_7');
+        map.getPane('pane_Perkebunan_7').style.zIndex = 407;
+        map.getPane('pane_Perkebunan_7').style['mix-blend-mode'] = 'normal';
+        var layer_Perkebunan_7 = new L.geoJson(json_Perkebunan_7, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Perkebunan_7',
+            onEachFeature: pop_Perkebunan_7,
+            style: style_Perkebunan_7_0,
+        });
+        bounds_group.addLayer(layer_Perkebunan_7);
+        map.addLayer(layer_Perkebunan_7);
+        function pop_Permukiman_8(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Permukiman_8_0() {
+            return {
+                pane: 'pane_Permukiman_8',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,127,0,1.0)',
+            }
+        }
+        map.createPane('pane_Permukiman_8');
+        map.getPane('pane_Permukiman_8').style.zIndex = 408;
+        map.getPane('pane_Permukiman_8').style['mix-blend-mode'] = 'normal';
+        var layer_Permukiman_8 = new L.geoJson(json_Permukiman_8, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Permukiman_8',
+            onEachFeature: pop_Permukiman_8,
+            style: style_Permukiman_8_0,
+        });
+        bounds_group.addLayer(layer_Permukiman_8);
+        map.addLayer(layer_Permukiman_8);
+        function pop_Kab_Wakatobi_9(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kab_Wakatobi_9_0() {
+            return {
+                pane: 'pane_Kab_Wakatobi_9',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kab_Wakatobi_9');
+        map.getPane('pane_Kab_Wakatobi_9').style.zIndex = 409;
+        map.getPane('pane_Kab_Wakatobi_9').style['mix-blend-mode'] = 'normal';
+        var layer_Kab_Wakatobi_9 = new L.geoJson(json_Kab_Wakatobi_9, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kab_Wakatobi_9',
+            onEachFeature: pop_Kab_Wakatobi_9,
+            style: style_Kab_Wakatobi_9_0,
+        });
+        bounds_group.addLayer(layer_Kab_Wakatobi_9);
+        map.addLayer(layer_Kab_Wakatobi_9);
+        function pop_Kab_Muna_Barat_10(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kab_Muna_Barat_10_0() {
+            return {
+                pane: 'pane_Kab_Muna_Barat_10',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kab_Muna_Barat_10');
+        map.getPane('pane_Kab_Muna_Barat_10').style.zIndex = 410;
+        map.getPane('pane_Kab_Muna_Barat_10').style['mix-blend-mode'] = 'normal';
+        var layer_Kab_Muna_Barat_10 = new L.geoJson(json_Kab_Muna_Barat_10, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kab_Muna_Barat_10',
+            onEachFeature: pop_Kab_Muna_Barat_10,
+            style: style_Kab_Muna_Barat_10_0,
+        });
+        bounds_group.addLayer(layer_Kab_Muna_Barat_10);
+        map.addLayer(layer_Kab_Muna_Barat_10);
+        function pop_Kab_Muna_11(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kab_Muna_11_0() {
+            return {
+                pane: 'pane_Kab_Muna_11',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kab_Muna_11');
+        map.getPane('pane_Kab_Muna_11').style.zIndex = 411;
+        map.getPane('pane_Kab_Muna_11').style['mix-blend-mode'] = 'normal';
+        var layer_Kab_Muna_11 = new L.geoJson(json_Kab_Muna_11, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kab_Muna_11',
+            onEachFeature: pop_Kab_Muna_11,
+            style: style_Kab_Muna_11_0,
+        });
+        bounds_group.addLayer(layer_Kab_Muna_11);
+        map.addLayer(layer_Kab_Muna_11);
+        function pop_Kota_Kendari_12(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kota_Kendari_12_0() {
+            return {
+                pane: 'pane_Kota_Kendari_12',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kota_Kendari_12');
+        map.getPane('pane_Kota_Kendari_12').style.zIndex = 412;
+        map.getPane('pane_Kota_Kendari_12').style['mix-blend-mode'] = 'normal';
+        var layer_Kota_Kendari_12 = new L.geoJson(json_Kota_Kendari_12, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kota_Kendari_12',
+            onEachFeature: pop_Kota_Kendari_12,
+            style: style_Kota_Kendari_12_0,
+        });
+        bounds_group.addLayer(layer_Kota_Kendari_12);
+        map.addLayer(layer_Kota_Kendari_12);
+        function pop_Kota_Bau_Bau_13(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kota_Bau_Bau_13_0() {
+            return {
+                pane: 'pane_Kota_Bau_Bau_13',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kota_Bau_Bau_13');
+        map.getPane('pane_Kota_Bau_Bau_13').style.zIndex = 413;
+        map.getPane('pane_Kota_Bau_Bau_13').style['mix-blend-mode'] = 'normal';
+        var layer_Kota_Bau_Bau_13 = new L.geoJson(json_Kota_Bau_Bau_13, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kota_Bau_Bau_13',
+            onEachFeature: pop_Kota_Bau_Bau_13,
+            style: style_Kota_Bau_Bau_13_0,
+        });
+        bounds_group.addLayer(layer_Kota_Bau_Bau_13);
+        map.addLayer(layer_Kota_Bau_Bau_13);
+        function pop_Kab_Konawe_Utara_14(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kab_Konawe_Utara_14_0() {
+            return {
+                pane: 'pane_Kab_Konawe_Utara_14',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kab_Konawe_Utara_14');
+        map.getPane('pane_Kab_Konawe_Utara_14').style.zIndex = 414;
+        map.getPane('pane_Kab_Konawe_Utara_14').style['mix-blend-mode'] = 'normal';
+        var layer_Kab_Konawe_Utara_14 = new L.geoJson(json_Kab_Konawe_Utara_14, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kab_Konawe_Utara_14',
+            onEachFeature: pop_Kab_Konawe_Utara_14,
+            style: style_Kab_Konawe_Utara_14_0,
+        });
+        bounds_group.addLayer(layer_Kab_Konawe_Utara_14);
+        map.addLayer(layer_Kab_Konawe_Utara_14);
+        function pop_Kab_Konawe_Selatan_15(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kab_Konawe_Selatan_15_0() {
+            return {
+                pane: 'pane_Kab_Konawe_Selatan_15',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kab_Konawe_Selatan_15');
+        map.getPane('pane_Kab_Konawe_Selatan_15').style.zIndex = 415;
+        map.getPane('pane_Kab_Konawe_Selatan_15').style['mix-blend-mode'] = 'normal';
+        var layer_Kab_Konawe_Selatan_15 = new L.geoJson(json_Kab_Konawe_Selatan_15, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kab_Konawe_Selatan_15',
+            onEachFeature: pop_Kab_Konawe_Selatan_15,
+            style: style_Kab_Konawe_Selatan_15_0,
+        });
+        bounds_group.addLayer(layer_Kab_Konawe_Selatan_15);
+        map.addLayer(layer_Kab_Konawe_Selatan_15);
+        function pop_Kab_Konawe_Kepulauan_16(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kab_Konawe_Kepulauan_16_0() {
+            return {
+                pane: 'pane_Kab_Konawe_Kepulauan_16',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kab_Konawe_Kepulauan_16');
+        map.getPane('pane_Kab_Konawe_Kepulauan_16').style.zIndex = 416;
+        map.getPane('pane_Kab_Konawe_Kepulauan_16').style['mix-blend-mode'] = 'normal';
+        var layer_Kab_Konawe_Kepulauan_16 = new L.geoJson(json_Kab_Konawe_Kepulauan_16, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kab_Konawe_Kepulauan_16',
+            onEachFeature: pop_Kab_Konawe_Kepulauan_16,
+            style: style_Kab_Konawe_Kepulauan_16_0,
+        });
+        bounds_group.addLayer(layer_Kab_Konawe_Kepulauan_16);
+        map.addLayer(layer_Kab_Konawe_Kepulauan_16);
+        function pop_Kab_Konawe_17(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kab_Konawe_17_0() {
+            return {
+                pane: 'pane_Kab_Konawe_17',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kab_Konawe_17');
+        map.getPane('pane_Kab_Konawe_17').style.zIndex = 417;
+        map.getPane('pane_Kab_Konawe_17').style['mix-blend-mode'] = 'normal';
+        var layer_Kab_Konawe_17 = new L.geoJson(json_Kab_Konawe_17, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kab_Konawe_17',
+            onEachFeature: pop_Kab_Konawe_17,
+            style: style_Kab_Konawe_17_0,
+        });
+        bounds_group.addLayer(layer_Kab_Konawe_17);
+        map.addLayer(layer_Kab_Konawe_17);
+        function pop_Kab_Kolaka_Utara_18(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kab_Kolaka_Utara_18_0() {
+            return {
+                pane: 'pane_Kab_Kolaka_Utara_18',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kab_Kolaka_Utara_18');
+        map.getPane('pane_Kab_Kolaka_Utara_18').style.zIndex = 418;
+        map.getPane('pane_Kab_Kolaka_Utara_18').style['mix-blend-mode'] = 'normal';
+        var layer_Kab_Kolaka_Utara_18 = new L.geoJson(json_Kab_Kolaka_Utara_18, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kab_Kolaka_Utara_18',
+            onEachFeature: pop_Kab_Kolaka_Utara_18,
+            style: style_Kab_Kolaka_Utara_18_0,
+        });
+        bounds_group.addLayer(layer_Kab_Kolaka_Utara_18);
+        map.addLayer(layer_Kab_Kolaka_Utara_18);
+        function pop_Kab_Kolaka_Timur_19(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kab_Kolaka_Timur_19_0() {
+            return {
+                pane: 'pane_Kab_Kolaka_Timur_19',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kab_Kolaka_Timur_19');
+        map.getPane('pane_Kab_Kolaka_Timur_19').style.zIndex = 419;
+        map.getPane('pane_Kab_Kolaka_Timur_19').style['mix-blend-mode'] = 'normal';
+        var layer_Kab_Kolaka_Timur_19 = new L.geoJson(json_Kab_Kolaka_Timur_19, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kab_Kolaka_Timur_19',
+            onEachFeature: pop_Kab_Kolaka_Timur_19,
+            style: style_Kab_Kolaka_Timur_19_0,
+        });
+        bounds_group.addLayer(layer_Kab_Kolaka_Timur_19);
+        map.addLayer(layer_Kab_Kolaka_Timur_19);
+        function pop_Kab_Kolaka_20(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kab_Kolaka_20_0() {
+            return {
+                pane: 'pane_Kab_Kolaka_20',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kab_Kolaka_20');
+        map.getPane('pane_Kab_Kolaka_20').style.zIndex = 420;
+        map.getPane('pane_Kab_Kolaka_20').style['mix-blend-mode'] = 'normal';
+        var layer_Kab_Kolaka_20 = new L.geoJson(json_Kab_Kolaka_20, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kab_Kolaka_20',
+            onEachFeature: pop_Kab_Kolaka_20,
+            style: style_Kab_Kolaka_20_0,
+        });
+        bounds_group.addLayer(layer_Kab_Kolaka_20);
+        map.addLayer(layer_Kab_Kolaka_20);
+        function pop_Kab_Buton_Utara_21(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kab_Buton_Utara_21_0() {
+            return {
+                pane: 'pane_Kab_Buton_Utara_21',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kab_Buton_Utara_21');
+        map.getPane('pane_Kab_Buton_Utara_21').style.zIndex = 421;
+        map.getPane('pane_Kab_Buton_Utara_21').style['mix-blend-mode'] = 'normal';
+        var layer_Kab_Buton_Utara_21 = new L.geoJson(json_Kab_Buton_Utara_21, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kab_Buton_Utara_21',
+            onEachFeature: pop_Kab_Buton_Utara_21,
+            style: style_Kab_Buton_Utara_21_0,
+        });
+        bounds_group.addLayer(layer_Kab_Buton_Utara_21);
+        map.addLayer(layer_Kab_Buton_Utara_21);
+        function pop_Kab_Buton_Tengah_22(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kab_Buton_Tengah_22_0() {
+            return {
+                pane: 'pane_Kab_Buton_Tengah_22',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kab_Buton_Tengah_22');
+        map.getPane('pane_Kab_Buton_Tengah_22').style.zIndex = 422;
+        map.getPane('pane_Kab_Buton_Tengah_22').style['mix-blend-mode'] = 'normal';
+        var layer_Kab_Buton_Tengah_22 = new L.geoJson(json_Kab_Buton_Tengah_22, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kab_Buton_Tengah_22',
+            onEachFeature: pop_Kab_Buton_Tengah_22,
+            style: style_Kab_Buton_Tengah_22_0,
+        });
+        bounds_group.addLayer(layer_Kab_Buton_Tengah_22);
+        map.addLayer(layer_Kab_Buton_Tengah_22);
+        function pop_Kab_Buton_Selatan_23(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kab_Buton_Selatan_23_0() {
+            return {
+                pane: 'pane_Kab_Buton_Selatan_23',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kab_Buton_Selatan_23');
+        map.getPane('pane_Kab_Buton_Selatan_23').style.zIndex = 423;
+        map.getPane('pane_Kab_Buton_Selatan_23').style['mix-blend-mode'] = 'normal';
+        var layer_Kab_Buton_Selatan_23 = new L.geoJson(json_Kab_Buton_Selatan_23, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kab_Buton_Selatan_23',
+            onEachFeature: pop_Kab_Buton_Selatan_23,
+            style: style_Kab_Buton_Selatan_23_0,
+        });
+        bounds_group.addLayer(layer_Kab_Buton_Selatan_23);
+        map.addLayer(layer_Kab_Buton_Selatan_23);
+        function pop_Kab_Buton_24(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kab_Buton_24_0() {
+            return {
+                pane: 'pane_Kab_Buton_24',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kab_Buton_24');
+        map.getPane('pane_Kab_Buton_24').style.zIndex = 424;
+        map.getPane('pane_Kab_Buton_24').style['mix-blend-mode'] = 'normal';
+        var layer_Kab_Buton_24 = new L.geoJson(json_Kab_Buton_24, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kab_Buton_24',
+            onEachFeature: pop_Kab_Buton_24,
+            style: style_Kab_Buton_24_0,
+        });
+        bounds_group.addLayer(layer_Kab_Buton_24);
+        map.addLayer(layer_Kab_Buton_24);
+        function pop_Kab_Bombana_25(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Kab_Bombana_25_0() {
+            return {
+                pane: 'pane_Kab_Bombana_25',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,194,194,1.0)',
+            }
+        }
+        map.createPane('pane_Kab_Bombana_25');
+        map.getPane('pane_Kab_Bombana_25').style.zIndex = 425;
+        map.getPane('pane_Kab_Bombana_25').style['mix-blend-mode'] = 'normal';
+        var layer_Kab_Bombana_25 = new L.geoJson(json_Kab_Bombana_25, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Kab_Bombana_25',
+            onEachFeature: pop_Kab_Bombana_25,
+            style: style_Kab_Bombana_25_0,
+        });
+        bounds_group.addLayer(layer_Kab_Bombana_25);
+        map.addLayer(layer_Kab_Bombana_25);
+        function pop_Sungai_26(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Sungai_26_0() {
+            return {
+                pane: 'pane_Sungai_26',
+                opacity: 1,
+                color: 'rgba(100,152,210,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(165,191,221,1.0)',
+            }
+        }
+        map.createPane('pane_Sungai_26');
+        map.getPane('pane_Sungai_26').style.zIndex = 426;
+        map.getPane('pane_Sungai_26').style['mix-blend-mode'] = 'normal';
+        var layer_Sungai_26 = new L.geoJson(json_Sungai_26, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Sungai_26',
+            onEachFeature: pop_Sungai_26,
+            style: style_Sungai_26_0,
+        });
+        bounds_group.addLayer(layer_Sungai_26);
+        function pop_Sungai_27(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_Sungai_27_0() {
+            return {
+                pane: 'pane_Sungai_27',
+                opacity: 1,
+                color: 'rgba(100,152,210,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 1.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_Sungai_27');
+        map.getPane('pane_Sungai_27').style.zIndex = 427;
+        map.getPane('pane_Sungai_27').style['mix-blend-mode'] = 'normal';
+        var layer_Sungai_27 = new L.geoJson(json_Sungai_27, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_Sungai_27',
+            onEachFeature: pop_Sungai_27,
+            style: style_Sungai_27_0,
+        });
+        bounds_group.addLayer(layer_Sungai_27);
+        function pop_BatasAdministrasi_28(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['REMARK'] !== null ? Autolinker.link(String(feature.properties['REMARK'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAMOBJ'] !== null ? Autolinker.link(String(feature.properties['NAMOBJ'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? Autolinker.link(String(feature.properties['Shape_Leng'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BatasAdministrasi_28_0() {
+            return {
+                pane: 'pane_BatasAdministrasi_28',
+                opacity: 1,
+                color: 'rgba(83,83,83,1.0)',
+                dashArray: '10,5,1,5',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_BatasAdministrasi_28');
+        map.getPane('pane_BatasAdministrasi_28').style.zIndex = 428;
+        map.getPane('pane_BatasAdministrasi_28').style['mix-blend-mode'] = 'normal';
+        var layer_BatasAdministrasi_28 = new L.geoJson(json_BatasAdministrasi_28, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_BatasAdministrasi_28',
+            onEachFeature: pop_BatasAdministrasi_28,
+            style: style_BatasAdministrasi_28_0,
+        });
+        bounds_group.addLayer(layer_BatasAdministrasi_28);
+        function pop_JaringanJalan_29(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['REMARK'] !== null ? Autolinker.link(String(feature.properties['REMARK'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_JaringanJalan_29_0() {
+            return {
+                pane: 'pane_JaringanJalan_29',
+                opacity: 1,
+                color: 'rgba(247,247,247,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_JaringanJalan_29');
+        map.getPane('pane_JaringanJalan_29').style.zIndex = 429;
+        map.getPane('pane_JaringanJalan_29').style['mix-blend-mode'] = 'normal';
+        var layer_JaringanJalan_29 = new L.geoJson(json_JaringanJalan_29, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_JaringanJalan_29',
+            onEachFeature: pop_JaringanJalan_29,
+            style: style_JaringanJalan_29_0,
+        });
+        bounds_group.addLayer(layer_JaringanJalan_29);
+        function pop_BlokIUPSultra_30(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOMOR_BLOK'] !== null ? Autolinker.link(String(feature.properties['NOMOR_BLOK'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">KABUPATEN</th>\
+                        <td>' + (feature.properties['KABUPATEN'] !== null ? Autolinker.link(String(feature.properties['KABUPATEN'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">PERUSAHAAN</th>\
+                        <td>' + (feature.properties['PERUSAHAAN'] !== null ? Autolinker.link(String(feature.properties['PERUSAHAAN'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NO_SK</th>\
+                        <td>' + (feature.properties['NO_SK'] !== null ? Autolinker.link(String(feature.properties['NO_SK'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">TAHUN</th>\
+                        <td>' + (feature.properties['TAHUN'] !== null ? Autolinker.link(String(feature.properties['TAHUN'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">IZIN</th>\
+                        <td>' + (feature.properties['IZIN'] !== null ? Autolinker.link(String(feature.properties['IZIN'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">KODE_CNC</th>\
+                        <td>' + (feature.properties['KODE_CNC'] !== null ? Autolinker.link(String(feature.properties['KODE_CNC'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SERTIFIKAT</th>\
+                        <td>' + (feature.properties['SERTIFIKAT'] !== null ? Autolinker.link(String(feature.properties['SERTIFIKAT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">TGL</th>\
+                        <td>' + (feature.properties['TGL'] !== null ? Autolinker.link(String(feature.properties['TGL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">BERLAKU</th>\
+                        <td>' + (feature.properties['BERLAKU'] !== null ? Autolinker.link(String(feature.properties['BERLAKU'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">BERAKHIR</th>\
+                        <td>' + (feature.properties['BERAKHIR'] !== null ? Autolinker.link(String(feature.properties['BERAKHIR'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">WIL_SK</th>\
+                        <td>' + (feature.properties['WIL_SK'] !== null ? Autolinker.link(String(feature.properties['WIL_SK'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">LOKASI</th>\
+                        <td>' + (feature.properties['LOKASI'] !== null ? Autolinker.link(String(feature.properties['LOKASI'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">GALIAN</th>\
+                        <td>' + (feature.properties['GALIAN'] !== null ? Autolinker.link(String(feature.properties['GALIAN'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">KEGIATAN</th>\
+                        <td>' + (feature.properties['KEGIATAN'] !== null ? Autolinker.link(String(feature.properties['KEGIATAN'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">KW</th>\
+                        <td>' + (feature.properties['KW'] !== null ? Autolinker.link(String(feature.properties['KW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ALAMAT</th>\
+                        <td>' + (feature.properties['ALAMAT'] !== null ? Autolinker.link(String(feature.properties['ALAMAT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NO_TELP</th>\
+                        <td>' + (feature.properties['NO_TELP'] !== null ? Autolinker.link(String(feature.properties['NO_TELP'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NO_FAX</th>\
+                        <td>' + (feature.properties['NO_FAX'] !== null ? Autolinker.link(String(feature.properties['NO_FAX'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">EMAIL</th>\
+                        <td>' + (feature.properties['EMAIL'] !== null ? Autolinker.link(String(feature.properties['EMAIL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">PEMILIK</th>\
+                        <td>' + (feature.properties['PEMILIK'] !== null ? Autolinker.link(String(feature.properties['PEMILIK'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">MASALAH</th>\
+                        <td>' + (feature.properties['MASALAH'] !== null ? Autolinker.link(String(feature.properties['MASALAH'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">KETERANGAN</th>\
+                        <td>' + (feature.properties['KETERANGAN'] !== null ? Autolinker.link(String(feature.properties['KETERANGAN'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BlokIUPSultra_30_0() {
+            return {
+                pane: 'pane_BlokIUPSultra_30',
+                opacity: 1,
+                color: 'rgba(230,255,3,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_BlokIUPSultra_30');
+        map.getPane('pane_BlokIUPSultra_30').style.zIndex = 430;
+        map.getPane('pane_BlokIUPSultra_30').style['mix-blend-mode'] = 'normal';
+        var layer_BlokIUPSultra_30 = new L.geoJson(json_BlokIUPSultra_30, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_BlokIUPSultra_30',
+            onEachFeature: pop_BlokIUPSultra_30,
+            style: style_BlokIUPSultra_30_0,
+        });
+        bounds_group.addLayer(layer_BlokIUPSultra_30);
+        map.addLayer(layer_BlokIUPSultra_30);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/BlokIUPSultra_30.png" /> Blok IUP Sultra': layer_BlokIUPSultra_30,'<img src="legend/JaringanJalan_29.png" /> Jaringan Jalan': layer_JaringanJalan_29,'<img src="legend/BatasAdministrasi_28.png" /> Batas Administrasi': layer_BatasAdministrasi_28,'<img src="legend/Sungai_27.png" /> Sungai': layer_Sungai_27,'<img src="legend/Sungai_26.png" /> Sungai': layer_Sungai_26,'<img src="legend/Kab_Bombana_25.png" /> Kab_Bombana': layer_Kab_Bombana_25,'<img src="legend/Kab_Buton_24.png" /> Kab_Buton': layer_Kab_Buton_24,'<img src="legend/Kab_Buton_Selatan_23.png" /> Kab_Buton_Selatan': layer_Kab_Buton_Selatan_23,'<img src="legend/Kab_Buton_Tengah_22.png" /> Kab_Buton_Tengah': layer_Kab_Buton_Tengah_22,'<img src="legend/Kab_Buton_Utara_21.png" /> Kab_Buton_Utara': layer_Kab_Buton_Utara_21,'<img src="legend/Kab_Kolaka_20.png" /> Kab_Kolaka': layer_Kab_Kolaka_20,'<img src="legend/Kab_Kolaka_Timur_19.png" /> Kab_Kolaka_Timur': layer_Kab_Kolaka_Timur_19,'<img src="legend/Kab_Kolaka_Utara_18.png" /> Kab_Kolaka_Utara': layer_Kab_Kolaka_Utara_18,'<img src="legend/Kab_Konawe_17.png" /> Kab_Konawe': layer_Kab_Konawe_17,'<img src="legend/Kab_Konawe_Kepulauan_16.png" /> Kab_Konawe_Kepulauan': layer_Kab_Konawe_Kepulauan_16,'<img src="legend/Kab_Konawe_Selatan_15.png" /> Kab_Konawe_Selatan': layer_Kab_Konawe_Selatan_15,'<img src="legend/Kab_Konawe_Utara_14.png" /> Kab_Konawe_Utara': layer_Kab_Konawe_Utara_14,'<img src="legend/Kota_Bau_Bau_13.png" /> Kota_Bau_Bau': layer_Kota_Bau_Bau_13,'<img src="legend/Kota_Kendari_12.png" /> Kota_Kendari': layer_Kota_Kendari_12,'<img src="legend/Kab_Muna_11.png" /> Kab_Muna': layer_Kab_Muna_11,'<img src="legend/Kab_Muna_Barat_10.png" /> Kab_Muna_Barat': layer_Kab_Muna_Barat_10,'<img src="legend/Kab_Wakatobi_9.png" /> Kab_Wakatobi': layer_Kab_Wakatobi_9,'<img src="legend/Permukiman_8.png" /> Permukiman': layer_Permukiman_8,'<img src="legend/Perkebunan_7.png" /> Perkebunan': layer_Perkebunan_7,'<img src="legend/HutanLindung_6.png" /> Hutan Lindung': layer_HutanLindung_6,'<img src="legend/HutanProduksiTetap_5.png" /> Hutan Produksi Tetap': layer_HutanProduksiTetap_5,'<img src="legend/HutanProduksiTerbatas_4.png" /> Hutan Produksi Terbatas': layer_HutanProduksiTerbatas_4,'<img src="legend/HutanProduksiYangDapatDikonversi_3.png" /> Hutan Produksi Yang Dapat Dikonversi': layer_HutanProduksiYangDapatDikonversi_3,'<img src="legend/HutanSuakaAlam_2.png" /> Hutan Suaka Alam': layer_HutanSuakaAlam_2,'<img src="legend/AreaPenggunaanLain_1.png" /> Area Penggunaan Lain': layer_AreaPenggunaanLain_1,"Google Satellite": overlay_GoogleSatellite_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
